@@ -6,7 +6,16 @@
     Troop 1541
   </mat-toolbar>
   <mat-sidenav-container class="example-container">
-    <mat-sidenav #side_nav mode="side" [opened]="opened">Sidenav content</mat-sidenav>
+    <mat-sidenav #side_nav mode="side" [opened]="opened">
+      <mat-nav-list>
+        <a mat-list-item>
+          <span class="entry">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
     <mat-sidenav-content>
       Main content
     </mat-sidenav-content>
