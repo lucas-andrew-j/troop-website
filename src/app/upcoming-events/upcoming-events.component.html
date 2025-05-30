@@ -3,11 +3,10 @@
 <div class="event-list">
   @for (event of upcomingEventList; track event.id) {
     <div class="event-card">
-      {{event.name}}
+      <p>{{event.name}}</p>
       {{event.pictureId}}
-      {{event.date}}
-      {{event.description}}
-
+      <p>{{event.date}}</p>
+      <p>{{event.description}}</p>
     </div>
   }
 </div>

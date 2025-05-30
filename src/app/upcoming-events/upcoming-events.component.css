@@ -1,11 +1,12 @@
 .event-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .event-card {
+  background-color: #ad9d7b;
   margin: 1rem;
   padding: 1rem;
   flex: 0 0 auto;
-  border: 1px solid red;
 }
