@@ -1,0 +1,13 @@
+<p>upcoming-events works!</p>
+
+<div class="event-list">
+  @for (event of upcomingEventList; track event.id) {
+    <div class="event-card">
+      {{event.name}}
+      {{event.pictureId}}
+      {{event.date}}
+      {{event.description}}
+
+    </div>
+  }
+</div>

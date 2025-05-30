@@ -1,0 +1,11 @@
+.event-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-card {
+  margin: 1rem;
+  padding: 1rem;
+  flex: 0 0 auto;
+  border: 1px solid red;
+}
