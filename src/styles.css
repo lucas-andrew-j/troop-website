@@ -6,6 +6,7 @@ html, body {
 }
 
 body {
+  display: block;
   background-color: #d2cab6;
   background-image: url(./assets/logo.svg);
   background-size:80% 80%;
@@ -13,4 +14,9 @@ body {
   background-repeat: no-repeat;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-root {
+  display: block;
+  height: 100%;
 }

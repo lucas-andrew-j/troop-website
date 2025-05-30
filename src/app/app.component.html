@@ -2,23 +2,40 @@
 
 <main class="main">
   <mat-toolbar>
-    <p><button mat-button (click)="side_nav.toggle()"><mat-icon fontIcon="menu"></mat-icon></button></p>
+    <button mat-button (click)="side_nav.toggle()"><mat-icon fontIcon="menu"></mat-icon></button>
     Troop 1541
   </mat-toolbar>
-  <mat-sidenav-container class="example-container">
+  <mat-sidenav-container>
     <mat-sidenav #side_nav mode="side" [opened]="opened">
       <mat-nav-list>
-        <a mat-list-item>
-          <span class="entry">
+        <a mat-list-item routerLink="/">
+          <span>
             <mat-icon>home</mat-icon>
             <span>Home</span>
+          </span>
+        </a>
+        <a mat-list-item routerLink="/upcoming-events">
+          <span>
+            <mat-icon>calendar_today</mat-icon>
+            <span>Upcoming Events</span>
+          </span>
+        </a>
+        <a mat-list-item>
+          <span>
+            <mat-icon>history</mat-icon>
+            <span>Past Events</span>
+          </span>
+        </a>
+        <a mat-list-item>
+          <span>
+            <mat-icon>link</mat-icon>
+            <span>Helpful Links</span>
           </span>
         </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      Main content
+      <router-outlet />
     </mat-sidenav-content>
   </mat-sidenav-container>
 </main>
-<router-outlet />
