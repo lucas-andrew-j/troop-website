@@ -4,7 +4,11 @@
   @for (event of upcomingEventList; track event.id) {
     <div class="event-card">
       <p>{{event.name}}</p>
-      {{event.pictureId}}
+      @if (event.pictureId) {
+        {{event.pictureId}}
+      } @else {
+        <img src="assets/outing.svg" alt="">
+      }
       <p>{{event.date}}</p>
       <p>{{event.description}}</p>
     </div>

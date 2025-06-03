@@ -4,4 +4,5 @@ export interface UpcomingEventInfo {
   description: string;
   date: Date;
   pictureId: number;
+  type: string;
 }
