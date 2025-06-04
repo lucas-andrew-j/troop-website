@@ -1,16 +1,18 @@
-<p>upcoming-events works!</p>
+<h1>UPCOMING EVENTS</h1>
 
 <div class="event-list">
   @for (event of upcomingEventList; track event.id) {
     <div class="event-card">
       <p>{{event.name}}</p>
-      @if (event.pictureId) {
-        {{event.pictureId}}
-      } @else {
-        <img src="assets/outing.svg" alt="">
-      }
-      <p>{{event.date}}</p>
-      <p>{{event.description}}</p>
+      <div style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;">
+        @if (event.pictureId) {
+          {{event.pictureId}}
+        } @else {
+          <mat-icon style="transform: scale(5)">forest</mat-icon>
+        }
+      </div>
+      <p>{{ event.date | date:'medium' }}</p>
+      <p>{{ event.description }}</p>
     </div>
   }
 </div>
