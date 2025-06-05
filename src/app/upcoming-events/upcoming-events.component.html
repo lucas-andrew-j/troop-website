@@ -2,17 +2,15 @@
 
 <div class="event-list">
   @for (event of upcomingEventList; track event.id) {
-    <div class="event-card">
-      <p>{{event.name}}</p>
-      <div style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;">
-        @if (event.pictureId) {
-          {{event.pictureId}}
-        } @else {
-          <mat-icon style="transform: scale(5)">forest</mat-icon>
-        }
-      </div>
-      <p>{{ event.date | date:'medium' }}</p>
-      <p>{{ event.description }}</p>
-    </div>
+    <mat-card class="event-card">
+      <mat-card-header>
+        <mat-card-title>{{event.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="./assets/outing.svg" alt="outing" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;">
+      <mat-card-content>
+        <p>{{ event.date | date:'medium' }}</p>
+        <p>{{ event.description }}</p>
+      </mat-card-content>
+    </mat-card>
   }
 </div>
