@@ -10,3 +10,8 @@
   padding: 1rem;
   flex: 0 0 auto;
 }
+
+.event-card:hover {
+  background-color: #a59675;
+  cursor: pointer;
+}
