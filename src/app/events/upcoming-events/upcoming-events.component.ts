@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
-import {UpcomingEventInfo} from './upcomingevent.model';
-import {UpcomingEventsService} from './upcoming-events.service';
+import {UpcomingEventInfo} from '../event.model';
+import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
@@ -25,7 +25,7 @@ import {RouterLink} from '@angular/router';
 })
 export class UpcomingEventsComponent {
   protected upcomingEventList: UpcomingEventInfo[];
-  private upcomingEventsService: UpcomingEventsService = inject(UpcomingEventsService);
+  private upcomingEventsService: EventsService = inject(EventsService);
 
   constructor() {
     this.upcomingEventList = this.upcomingEventsService.getUpcomingEvents();

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {UpcomingEventInfo} from './upcomingevent.model';
+import {UpcomingEventInfo} from './event.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UpcomingEventsService {
+export class EventsService {
   constructor() { }
 
   protected upcomingEventList: UpcomingEventInfo[] = [
