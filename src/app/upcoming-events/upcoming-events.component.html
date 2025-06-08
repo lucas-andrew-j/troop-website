@@ -4,11 +4,11 @@
 </button>
 <div class="event-list">
   @for (event of upcomingEventList; track event.id) {
-    <mat-card (click)="openEventDetails(event.id)" class="event-card">
+    <mat-card [routerLink]="['/event', event.id]" class="event-card">
       <mat-card-header>
         <mat-card-title>{{event.name}}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="./assets/service.svg" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;">
+      <img mat-card-image src="./assets/service.svg" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;" />
       <mat-card-content>
         <p>Meeting Time: {{ event.startDate | date:'medium' }}</p>
         <p>Meeting Location: {{ event.meetingLocation }}</p>

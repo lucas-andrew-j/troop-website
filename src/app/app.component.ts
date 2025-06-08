@@ -19,7 +19,7 @@ import { MatButton } from '@angular/material/button';
     RouterLink
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'troop-website';

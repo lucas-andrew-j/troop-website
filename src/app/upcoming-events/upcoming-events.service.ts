@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UpcomingEventInfo} from './upcomingevent';
+import {UpcomingEventInfo} from './upcomingevent.model';
 
 @Injectable({
   providedIn: 'root'

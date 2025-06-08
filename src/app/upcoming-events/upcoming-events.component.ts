@@ -1,10 +1,11 @@
-import {Component, inject, output} from '@angular/core';
-import {UpcomingEventInfo} from './upcomingevent';
+import {Component, inject} from '@angular/core';
+import {UpcomingEventInfo} from './upcomingevent.model';
 import {UpcomingEventsService} from './upcoming-events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
 import {MatFabButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -16,10 +17,11 @@ import {MatFabButton} from '@angular/material/button';
     MatCardTitle,
     MatCardContent,
     MatCardImage,
-    MatFabButton
+    MatFabButton,
+    RouterLink
   ],
   templateUrl: './upcoming-events.component.html',
-  styleUrl: './upcoming-events.component.css'
+  styleUrl: './upcoming-events.component.scss'
 })
 export class UpcomingEventsComponent {
   protected upcomingEventList: UpcomingEventInfo[];
