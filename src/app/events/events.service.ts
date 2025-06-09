@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {UpcomingEventInfo} from './event.model';
+import {Injectable} from '@angular/core';
+import {EventType, UpcomingEventInfo} from './event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class EventsService {
       startDate: new Date("January 1, 2025"),
       endDate: new Date("January 3, 2025"),
       pictureId: 0,
-      type: 'outing',
+      type: EventType.Outing,
       meetingLocation: 'location 0',
       thumbnail: 'thumbnail/url',
     },
@@ -26,7 +26,7 @@ export class EventsService {
       startDate: new Date("February 1, 2025"),
       endDate: new Date("February 3, 2025"),
       pictureId: 1,
-      type: 'service',
+      type: EventType.Service,
       meetingLocation: 'location 1',
       thumbnail: 'thumbnail/url',
     },
@@ -37,7 +37,7 @@ export class EventsService {
       startDate: new Date("March 1, 2025"),
       endDate: new Date("March 3, 2025"),
       pictureId: 2,
-      type: 'fundraiser',
+      type: EventType.Fundraiser,
       meetingLocation: 'location 2',
       thumbnail: 'thumbnail/url',
     },

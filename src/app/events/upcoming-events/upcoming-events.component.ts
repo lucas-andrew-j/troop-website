@@ -6,6 +6,7 @@ import {DatePipe} from '@angular/common';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
 import {MatFabButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
+import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -18,7 +19,9 @@ import {RouterLink} from '@angular/router';
     MatCardContent,
     MatCardImage,
     MatFabButton,
-    RouterLink
+    RouterLink,
+    MatButtonToggleGroup,
+    MatButtonToggle
   ],
   templateUrl: './upcoming-events.component.html',
   styleUrl: './upcoming-events.component.scss'
@@ -26,6 +29,7 @@ import {RouterLink} from '@angular/router';
 export class UpcomingEventsComponent {
   protected upcomingEventList: UpcomingEventInfo[];
   private upcomingEventsService: EventsService = inject(EventsService);
+  defaultSelections = ['Meetings', 'Outings', 'Service', 'Fundraiser'];
 
   constructor() {
     this.upcomingEventList = this.upcomingEventsService.getUpcomingEvents();
@@ -34,10 +38,5 @@ export class UpcomingEventsComponent {
   addEvent() {
     // TODO: Bring up dialog to add an event
     console.log('add new event');
-  }
-
-  openEventDetails(id: number) {
-    // TODO: This can't output through router-outlet
-    console.log(id);
   }
 }

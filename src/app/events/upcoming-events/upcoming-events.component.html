@@ -1,7 +1,24 @@
-<h1>UPCOMING EVENTS</h1>
-<button mat-fab (click)="addEvent()" aria-label="Add event button">
-  <mat-icon>add</mat-icon>
-</button>
+<h1>
+  UPCOMING EVENTS
+  <button mat-fab extended (click)="addEvent()" aria-label="Add event button">
+    <mat-icon>add</mat-icon>
+    Add Event
+  </button>
+</h1>
+
+<mat-button-toggle-group
+  name="event_types"
+  aria-label="Event types"
+  hideMultipleSelectionIndicator="false"
+  multiple
+  [value]="defaultSelections"
+>
+  <mat-button-toggle value="Meetings">Meetings</mat-button-toggle>
+  <mat-button-toggle value="Outings">Outings</mat-button-toggle>
+  <mat-button-toggle value="Service">Service</mat-button-toggle>
+  <mat-button-toggle value="Fundraiser">Fundraiser</mat-button-toggle>
+</mat-button-toggle-group>
+
 <div class="event-list">
   @for (event of upcomingEventList; track event.id) {
     <mat-card [routerLink]="['/event', event.id]" class="event-card">
