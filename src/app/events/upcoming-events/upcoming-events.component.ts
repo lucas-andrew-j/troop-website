@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {UpcomingEventInfo} from '../event.model';
+import {EventType, UpcomingEventInfo} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
@@ -29,7 +29,7 @@ import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-to
 export class UpcomingEventsComponent {
   protected upcomingEventList: UpcomingEventInfo[];
   private upcomingEventsService: EventsService = inject(EventsService);
-  defaultSelections = ['Meetings', 'Outings', 'Service', 'Fundraiser'];
+  defaultSelections = [EventType.Meeting, EventType.Outing, EventType.Service, EventType.Fundraiser];
 
   constructor() {
     this.upcomingEventList = this.upcomingEventsService.getUpcomingEvents();
@@ -39,4 +39,6 @@ export class UpcomingEventsComponent {
     // TODO: Bring up dialog to add an event
     console.log('add new event');
   }
+
+  protected readonly EventType = EventType;
 }

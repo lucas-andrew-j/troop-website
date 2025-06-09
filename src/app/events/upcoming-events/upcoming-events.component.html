@@ -13,10 +13,10 @@
   multiple
   [value]="defaultSelections"
 >
-  <mat-button-toggle value="Meetings">Meetings</mat-button-toggle>
-  <mat-button-toggle value="Outings">Outings</mat-button-toggle>
-  <mat-button-toggle value="Service">Service</mat-button-toggle>
-  <mat-button-toggle value="Fundraiser">Fundraiser</mat-button-toggle>
+  <mat-button-toggle [value]="EventType.Meeting">Meeting</mat-button-toggle>
+  <mat-button-toggle [value]="EventType.Outing">Outing</mat-button-toggle>
+  <mat-button-toggle [value]="EventType.Service">Service</mat-button-toggle>
+  <mat-button-toggle [value]="EventType.Fundraiser">Fundraiser</mat-button-toggle>
 </mat-button-toggle-group>
 
 <div class="event-list">
