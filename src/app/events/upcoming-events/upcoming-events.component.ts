@@ -7,6 +7,7 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from
 import {MatFabButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {EventCardComponent} from '../event-card/event-card.component';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -21,7 +22,8 @@ import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-to
     MatFabButton,
     RouterLink,
     MatButtonToggleGroup,
-    MatButtonToggle
+    MatButtonToggle,
+    EventCardComponent
   ],
   templateUrl: './upcoming-events.component.html',
   styleUrl: './upcoming-events.component.scss'

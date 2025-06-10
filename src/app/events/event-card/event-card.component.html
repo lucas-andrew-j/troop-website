@@ -1,0 +1,9 @@
+<mat-card [routerLink]="['/event', eventId()]" class="event-card">
+  <mat-card-header>
+    <mat-card-title>{{eventTitle()}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="imageSource()" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;" />
+  <mat-card-content>
+    <ng-content />
+  </mat-card-content>
+</mat-card>
