@@ -41,6 +41,17 @@ export class EventsService {
       meetingLocation: 'location 2',
       thumbnail: 'thumbnail/url',
     },
+    {
+      id: 3,
+      name: 'Event 3',
+      description: 'Event 3\'s description',
+      startDate: new Date("April 1, 2025"),
+      endDate: new Date("April 3, 2025"),
+      pictureId: 3,
+      type: EventType.Meeting,
+      meetingLocation: 'location 3',
+      thumbnail: 'thumbnail/url',
+    },
   ];
 
   getUpcomingEvents() {

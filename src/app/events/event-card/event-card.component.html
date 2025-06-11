@@ -2,7 +2,21 @@
   <mat-card-header>
     <mat-card-title>{{eventTitle()}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image [src]="imageSource()" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;" />
+  @if (imageSource() !== undefined) {
+    <img mat-card-image [src]="imageSource()" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;" />
+  }
+  @else if (eventType() === EventType.Meeting) {
+    <mat-icon>groups</mat-icon>
+  }
+  @else if (eventType() === EventType.Outing) {
+    <mat-icon>hiking</mat-icon>
+  }
+  @else if (eventType() === EventType.Service) {
+    <mat-icon>volunteer_activism</mat-icon>
+  }
+  @else {
+    <mat-icon>attach_money</mat-icon>
+  }
   <mat-card-content>
     <ng-content />
   </mat-card-content>

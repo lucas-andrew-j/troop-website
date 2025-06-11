@@ -1,6 +1,21 @@
+@use '@angular/material' as mat;
+
 .event-card {
   background-color: #ad9d7b;
   margin: 1rem;
   padding: 1rem;
   flex: 0 0 auto;
+}
+
+mat-icon {
+  @include mat.icon-overrides((
+    color: #49402d,
+  ));
+  font-size: 15rem;
+  height: 15rem;
+  width: 20rem;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

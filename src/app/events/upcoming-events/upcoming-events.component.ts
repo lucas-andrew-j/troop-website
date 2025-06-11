@@ -3,9 +3,7 @@ import {EventType, UpcomingEventInfo} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
-import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
 import {MatFabButton} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {EventCardComponent} from '../event-card/event-card.component';
 
@@ -14,13 +12,7 @@ import {EventCardComponent} from '../event-card/event-card.component';
   imports: [
     MatIconModule,
     DatePipe,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatCardImage,
     MatFabButton,
-    RouterLink,
     MatButtonToggleGroup,
     MatButtonToggle,
     EventCardComponent
