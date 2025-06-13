@@ -24,4 +24,8 @@ import { MatButton } from '@angular/material/button';
 export class AppComponent {
   title = 'troop-website';
   opened = 'opened';
+
+  openLogin() {
+    // TODO Open login page
+  }
 }

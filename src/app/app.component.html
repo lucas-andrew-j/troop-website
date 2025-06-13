@@ -2,8 +2,9 @@
 
 <main class="main">
   <mat-toolbar>
-    <button mat-button (click)="side_nav.toggle()"><mat-icon fontIcon="menu"></mat-icon></button>
+    <button mat-button (click)="side_nav.toggle()" style=""><mat-icon fontIcon="menu"></mat-icon></button>
     Troop 1541
+    <button mat-button (click)="openLogin()" style="margin-left:auto">Log In</button>
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav #side_nav mode="side" [opened]="opened">
