@@ -2,10 +2,11 @@ import {Component, inject} from '@angular/core';
 import {EventType, UpcomingEventInfo} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
-import {DatePipe} from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
 import {MatFabButton} from '@angular/material/button';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {EventCardComponent} from '../event-card/event-card.component';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -15,13 +16,14 @@ import {EventCardComponent} from '../event-card/event-card.component';
     MatFabButton,
     MatButtonToggleGroup,
     MatButtonToggle,
-    EventCardComponent
+    EventCardComponent,
+    AsyncPipe
   ],
   templateUrl: './upcoming-events.component.html',
   styleUrl: './upcoming-events.component.scss'
 })
 export class UpcomingEventsComponent {
-  protected upcomingEventList: UpcomingEventInfo[];
+  protected upcomingEventList: Observable<UpcomingEventInfo[]>;
   private upcomingEventsService: EventsService = inject(EventsService);
   defaultSelections = [EventType.Meeting, EventType.Outing, EventType.Service, EventType.Fundraiser];
 

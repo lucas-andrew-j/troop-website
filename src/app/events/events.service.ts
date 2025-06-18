@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {EventType, UpcomingEventInfo} from './event.model';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,6 @@ export class EventsService {
   ];
 
   getUpcomingEvents() {
-    return this.upcomingEventList;
+    return of(this.upcomingEventList);
   }
 }

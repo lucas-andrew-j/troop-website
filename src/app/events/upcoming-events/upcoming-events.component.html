@@ -20,7 +20,7 @@
 </mat-button-toggle-group>
 
 <div class="event-list">
-  @for (event of upcomingEventList; track event.id) {
+  @for (event of upcomingEventList | async; track event.id) {
   <app-event-card [eventId]="event.id" [eventTitle]="event.name"
                   [eventType]="event.type">
     <p>Meeting Time: {{ event.startDate | date:'medium' }}</p>
