@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {EventType, EventDetails, EventSummary} from './event.model';
-import {find, from, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -90,11 +90,12 @@ export class EventsService {
     },
   ];
 
-  getEventDetails(id: number): Observable<EventDetails | undefined> {
-    return from(this.eventList)
-      .pipe(
-        find((event: EventDetails) => event.id === id)
-      );
+  getEventDetails(id: string): Observable<EventDetails | undefined> {
+    let idNum = parseInt(id);
+
+    let eventDetails = this.eventList.find(event => event.id === idNum);
+
+    return of(eventDetails);
   }
 
   getUpcomingEventSummaries(): Observable<EventSummary[]> {

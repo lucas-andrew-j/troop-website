@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {EventType, EventDetails, EventSummary} from '../event.model';
+import {EventType, EventSummary} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {AsyncPipe, DatePipe} from '@angular/common';
