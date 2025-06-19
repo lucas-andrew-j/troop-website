@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {EventType, UpcomingEventInfo} from '../event.model';
+import {EventType, EventDetails, EventSummary} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {AsyncPipe, DatePipe} from '@angular/common';
@@ -23,12 +23,12 @@ import {Observable} from 'rxjs';
   styleUrl: './upcoming-events.component.scss'
 })
 export class UpcomingEventsComponent {
-  protected upcomingEventList: Observable<UpcomingEventInfo[]>;
+  protected upcomingEventList: Observable<EventSummary[]>;
   private upcomingEventsService: EventsService = inject(EventsService);
   defaultSelections = [EventType.Meeting, EventType.Outing, EventType.Service, EventType.Fundraiser];
 
   constructor() {
-    this.upcomingEventList = this.upcomingEventsService.getUpcomingEvents();
+    this.upcomingEventList = this.upcomingEventsService.getUpcomingEventSummaries();
   }
 
   addEvent() {

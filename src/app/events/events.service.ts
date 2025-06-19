@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {EventType, UpcomingEventInfo} from './event.model';
-import {of} from 'rxjs';
+import {EventType, EventDetails, EventSummary} from './event.model';
+import {find, from, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,42 @@ import {of} from 'rxjs';
 export class EventsService {
   constructor() { }
 
-  protected upcomingEventList: UpcomingEventInfo[] = [
+  protected upcomingEventList: EventSummary[] = [
+    {
+      id: 0,
+      name: 'Event 0',
+      startDate: new Date("January 1, 2025"),
+      type: EventType.Outing,
+      meetingLocation: 'location 0',
+      thumbnail: 'thumbnail/url',
+    },
+    {
+      id: 1,
+      name: 'Event 1',
+      startDate: new Date("February 1, 2025"),
+      type: EventType.Service,
+      meetingLocation: 'location 1',
+      thumbnail: 'thumbnail/url',
+    },
+    {
+      id: 2,
+      name: 'Event 2',
+      startDate: new Date("March 1, 2025"),
+      type: EventType.Fundraiser,
+      meetingLocation: 'location 2',
+      thumbnail: 'thumbnail/url',
+    },
+    {
+      id: 3,
+      name: 'Event 3',
+      startDate: new Date("April 1, 2025"),
+      type: EventType.Meeting,
+      meetingLocation: 'location 3',
+      thumbnail: 'thumbnail/url',
+    },
+  ];
+
+  protected eventList: EventDetails[] = [
     {
       id: 0,
       name: 'Event 0',
@@ -55,7 +90,14 @@ export class EventsService {
     },
   ];
 
-  getUpcomingEvents() {
+  getEventDetails(id: number): Observable<EventDetails | undefined> {
+    return from(this.eventList)
+      .pipe(
+        find((event: EventDetails) => event.id === id)
+      );
+  }
+
+  getUpcomingEventSummaries(): Observable<EventSummary[]> {
     return of(this.upcomingEventList);
   }
 }
