@@ -33,7 +33,7 @@ export class UpcomingEventsComponent {
 
   addEvent() {
     // TODO: Bring up dialog to add an event
-    console.log('add new event');
+    this.upcomingEventsService.putEventSummary('new event', new Date("May 1, 2025"), EventType.Outing)
   }
 
   protected readonly EventType = EventType;

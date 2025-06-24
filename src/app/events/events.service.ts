@@ -101,4 +101,22 @@ export class EventsService {
   getUpcomingEventSummaries(): Observable<EventSummary[]> {
     return of(this.upcomingEventList);
   }
+
+  putEventSummary(name: string, startDate: Date, type: EventType) {
+    let highestId = 0;
+    this.upcomingEventList.forEach(event => {
+      if (event.id > highestId) {
+        highestId = event.id;
+      }
+    });
+
+    this.upcomingEventList.push({
+      id: highestId,
+      name: name,
+      startDate: startDate,
+      type: type,
+      meetingLocation: '',
+      thumbnail: '',
+    })
+  }
 }
