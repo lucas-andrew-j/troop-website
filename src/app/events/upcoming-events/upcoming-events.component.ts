@@ -7,6 +7,8 @@ import {MatFabButton} from '@angular/material/button';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {Observable} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {AddEventDialogComponent} from '../add-event-dialog/add-event-dialog.component';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -26,6 +28,7 @@ export class UpcomingEventsComponent {
   protected upcomingEventList: Observable<EventSummary[]>;
   private upcomingEventsService: EventsService = inject(EventsService);
   defaultSelections = [EventType.Meeting, EventType.Outing, EventType.Service, EventType.Fundraiser];
+  private dialog = inject(MatDialog);
 
   constructor() {
     this.upcomingEventList = this.upcomingEventsService.getUpcomingEventSummaries();
@@ -33,7 +36,12 @@ export class UpcomingEventsComponent {
 
   addEvent() {
     // TODO: Bring up dialog to add an event
-    this.upcomingEventsService.putEventSummary('new event', new Date("May 1, 2025"), EventType.Outing)
+    const dialogRef = this.dialog.open(AddEventDialogComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    //this.upcomingEventsService.putEventSummary('new event', new Date("May 1, 2025"), EventType.Outing)
   }
 
   protected readonly EventType = EventType;

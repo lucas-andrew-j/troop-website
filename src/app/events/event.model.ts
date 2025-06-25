@@ -22,9 +22,8 @@ export interface EventSummary {
 }
 
 export enum EventType {
-  Meeting,
-  Outing,
-  Service,
-  Fundraiser,
-
+  Meeting = 'Meeting',
+  Outing = 'Outing',
+  Service = 'Service',
+  Fundraiser = 'Fundraiser',
 }
