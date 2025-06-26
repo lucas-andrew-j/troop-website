@@ -19,4 +19,8 @@
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <mat-dialog-actions>
+    <button mat-button (click)="addEvent()">Add</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+  </mat-dialog-actions>
 </mat-dialog-content>
