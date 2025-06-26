@@ -35,13 +35,7 @@ export class UpcomingEventsComponent {
   }
 
   addEvent() {
-    // TODO: Bring up dialog to add an event
-    const dialogRef = this.dialog.open(AddEventDialogComponent, {});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-    //this.upcomingEventsService.putEventSummary('new event', new Date("May 1, 2025"), EventType.Outing)
+    this.dialog.open(AddEventDialogComponent, {});
   }
 
   protected readonly EventType = EventType;

@@ -1,26 +1,28 @@
 <h2>Add Event</h2>
 <mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Type</mat-label>
-    <mat-select>
-      @for (eventType of EventType | keyvalue; track eventType) {
-        <mat-option value={{eventType.value}}>{{ eventType.value }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Date</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-dialog-actions>
-    <button mat-button (click)="addEvent()">Add</button>
-    <button mat-button (click)="cancel()">Cancel</button>
-  </mat-dialog-actions>
+  <form [formGroup]="formGroup" (ngSubmit)="addEvent()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="eventName"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="eventType">
+        @for (eventType of EventType | keyvalue; track eventType) {
+          <mat-option value={{eventType.value}}>{{ eventType.value }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="eventStart">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close type="submit" [disabled]="!formGroup.valid">Add</button>
+      <button mat-button mat-dialog-close type="button">Cancel</button>
+    </mat-dialog-actions>
+  </form>
 </mat-dialog-content>
