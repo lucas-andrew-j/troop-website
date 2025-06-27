@@ -1,6 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogActions, MatDialogClose, MatDialogContent} from '@angular/material/dialog';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOption} from '@angular/material/select';
 import {provideNativeDateAdapter} from '@angular/material/core';
@@ -36,7 +36,9 @@ import {EventsService} from '../events.service';
 })
 export class AddEventDialogComponent {
   protected readonly EventType = EventType;
-  private eventsService: EventsService = inject(EventsService);
+
+  constructor(private eventsService: EventsService,
+              private dialogRef: MatDialogRef<AddEventDialogComponent>) {}
 
   formGroup = new FormGroup({
     eventName: new FormControl<string>('', Validators.required),
@@ -45,11 +47,16 @@ export class AddEventDialogComponent {
   });
 
   addEvent() {
+    if (this.formGroup.invalid) {
+      this.formGroup.markAsTouched();
+      return;
+    }
+
     this.eventsService.putEventSummary(
       this.formGroup.get('eventName')?.value!,
       this.formGroup.get('eventStart')?.value!,
       this.formGroup.get('eventType')?.value!);
-    // console.log(this.formGroup.value);
-    console.log(this.formGroup.valid);
+
+    this.dialogRef.close();
   }
 }
