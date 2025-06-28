@@ -99,7 +99,7 @@ export class EventsService {
   }
 
   getUpcomingEventSummaries(): Observable<EventSummary[]> {
-    return of(this.upcomingEventList);
+    return of(this.upcomingEventList.sort((a, b) => a.startDate < b.startDate ? 0 : 1));
   }
 
   putEventSummary(name: string, startDate: Date, type: EventType) {

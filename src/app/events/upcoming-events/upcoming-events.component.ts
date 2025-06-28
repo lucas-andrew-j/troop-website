@@ -35,7 +35,11 @@ export class UpcomingEventsComponent {
   }
 
   addEvent() {
-    this.dialog.open(AddEventDialogComponent, {});
+    this.dialog.open(AddEventDialogComponent, {})
+      .afterClosed()
+      .subscribe(() => {
+        this.upcomingEventList = this.upcomingEventsService.getUpcomingEventSummaries();
+      });
   }
 
   protected readonly EventType = EventType;

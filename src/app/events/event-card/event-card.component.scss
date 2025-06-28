@@ -8,9 +8,6 @@
 }
 
 mat-icon {
-  @include mat.icon-overrides((
-    color: #49402d,
-  ));
   font-size: 15rem;
   height: 15rem;
   width: 20rem;
@@ -18,4 +15,8 @@ mat-icon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @include mat.icon-overrides((
+    color: #49402d,
+  ));
 }
