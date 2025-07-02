@@ -20,7 +20,7 @@ export class EventsService {
     {
       id: 1,
       name: 'Event 1',
-      startDate: new Date("February 1, 2025"),
+      startDate: new Date("January 15, 2025"),
       type: EventType.Service,
       meetingLocation: 'location 1',
       thumbnail: 'thumbnail/url',

@@ -19,12 +19,18 @@
   <mat-button-toggle [value]="EventType.Fundraiser">Fundraiser</mat-button-toggle>
 </mat-button-toggle-group>
 
-<div class="event-list">
-  @for (event of upcomingEventList | async; track event.id) {
-    <app-event-card [eventId]="event.id" [eventTitle]="event.name"
-                    [eventType]="event.type">
-      <p>Meeting Time: {{ event.startDate | date:'medium' }}</p>
-      <p>Meeting Location: {{ event.meetingLocation }}</p>
-    </app-event-card>
-  }
-</div>
+@for (monthList of upcomingEventList; track $index) {
+  <div>
+    <h3>{{monthHeader(monthList[0].startDate)}}</h3>
+    <mat-divider></mat-divider>
+    <div class="event-list">
+    @for (event of monthList; track event.id) {
+      <app-event-card [eventId]="event.id" [eventTitle]="event.name"
+                      [eventType]="event.type">
+        <p>Meeting Time: {{ event.startDate | date:'medium' }}</p>
+        <p>Meeting Location: {{ event.meetingLocation }}</p>
+      </app-event-card>
+    }
+    </div>
+  </div>
+}
