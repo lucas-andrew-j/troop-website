@@ -52,7 +52,7 @@ export class AddEventDialogComponent {
       return;
     }
 
-    this.eventsService.putEventSummary(
+    this.eventsService.postEvent(
       this.formGroup.get('name')?.value!,
       this.formGroup.get('startDate')?.value!,
       this.formGroup.get('type')?.value!);
