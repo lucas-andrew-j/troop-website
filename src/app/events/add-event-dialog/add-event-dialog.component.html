@@ -3,11 +3,11 @@
   <form [formGroup]="formGroup">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput formControlName="eventName"/>
+      <input matInput formControlName="name"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Type</mat-label>
-      <mat-select formControlName="eventType">
+      <mat-select formControlName="type">
         @for (eventType of EventType | keyvalue; track eventType) {
           <mat-option value={{eventType.value}}>{{ eventType.value }}</mat-option>
         }
@@ -15,7 +15,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="eventStart">
+      <input matInput [matDatepicker]="picker" formControlName="startDate">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>

@@ -1,6 +1,6 @@
 <h1>
   UPCOMING EVENTS
-  <button mat-fab extended (click)="addEvent()" aria-label="Add event button">
+  <button mat-fab extended (click)="openAddEventDialog()" aria-label="Add event button">
     <mat-icon>add</mat-icon>
     Add Event
   </button>
@@ -21,7 +21,7 @@
 
 @for (monthList of upcomingEventList; track $index) {
   <div>
-    <h3>{{monthHeader(monthList[0].startDate)}}</h3>
+    <h2>{{monthHeader(monthList[0].startDate)}}</h2>
     <mat-divider></mat-divider>
     <div class="event-list">
     @for (event of monthList; track event.id) {

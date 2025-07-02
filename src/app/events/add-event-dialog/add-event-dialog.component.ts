@@ -7,7 +7,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {KeyValuePipe} from '@angular/common';
-import {EventType} from '../event.model';
+import {EventSummary, EventType} from '../event.model';
 import {MatButton} from '@angular/material/button';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {EventsService} from '../events.service';
@@ -41,9 +41,9 @@ export class AddEventDialogComponent {
               private dialogRef: MatDialogRef<AddEventDialogComponent>) {}
 
   formGroup = new FormGroup({
-    eventName: new FormControl<string>('', Validators.required),
-    eventType: new FormControl<EventType | null>(null, Validators.required),
-    eventStart: new FormControl<Date | null>(null, Validators.required),
+    name: new FormControl<string>('', Validators.required),
+    type: new FormControl<EventType | null>(null, Validators.required),
+    startDate: new FormControl<Date | null>(null, Validators.required),
   });
 
   addEvent() {
@@ -53,10 +53,10 @@ export class AddEventDialogComponent {
     }
 
     this.eventsService.putEventSummary(
-      this.formGroup.get('eventName')?.value!,
-      this.formGroup.get('eventStart')?.value!,
-      this.formGroup.get('eventType')?.value!);
+      this.formGroup.get('name')?.value!,
+      this.formGroup.get('startDate')?.value!,
+      this.formGroup.get('type')?.value!);
 
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

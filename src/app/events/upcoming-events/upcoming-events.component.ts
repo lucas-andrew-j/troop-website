@@ -36,13 +36,15 @@ export class UpcomingEventsComponent {
     });
   }
 
-  addEvent() {
+  openAddEventDialog() {
     this.dialog.open(AddEventDialogComponent, {})
       .afterClosed()
-      .subscribe(() => {
-        this.upcomingEventsService.getUpcomingEventSummaries().subscribe(eventList => {
-          this.upcomingEventList = this.buildMonthLists(eventList);
-        });
+      .subscribe((eventAdded) => {
+        if (eventAdded) {
+          this.upcomingEventsService.getUpcomingEventSummaries().subscribe(eventList => {
+            this.upcomingEventList = this.buildMonthLists(eventList);
+          });
+        }
       });
   }
 
