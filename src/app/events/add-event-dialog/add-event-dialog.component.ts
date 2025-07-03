@@ -38,7 +38,7 @@ export class AddEventDialogComponent {
   protected readonly EventType = EventType;
 
   constructor(private eventsService: EventsService,
-              private dialogRef: MatDialogRef<AddEventDialogComponent>) {}
+              private dialogRef: MatDialogRef<AddEventDialogComponent, EventSummary>) {}
 
   formGroup = new FormGroup({
     name: new FormControl<string>('', Validators.required),
@@ -52,11 +52,11 @@ export class AddEventDialogComponent {
       return;
     }
 
-    this.eventsService.postEvent(
+    const newEventSummary = this.eventsService.postEvent(
       this.formGroup.get('name')?.value!,
       this.formGroup.get('startDate')?.value!,
       this.formGroup.get('type')?.value!);
 
-    this.dialogRef.close(true);
+    this.dialogRef.close(newEventSummary);
   }
 }

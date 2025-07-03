@@ -12,13 +12,31 @@ export interface EventDetails {
   thumbnail: string;
 }
 
-export interface EventSummary {
+export interface IEventSummary {
   id: number;
   name: string;
   type: EventType;
   startDate: Date;
   meetingLocation: string;
   thumbnail: string;
+}
+
+export class EventSummary implements IEventSummary{
+  id: number;
+  name: string;
+  type: EventType;
+  startDate: Date;
+  meetingLocation: string;
+  thumbnail: string;
+
+  constructor(record: any) {
+    this.id = record.id;
+    this.name = record.name;
+    this.type = record.type;
+    this.startDate = record.startDate;
+    this.meetingLocation = record.meetingLocation;
+    this.thumbnail = record.thumbnail;
+  }
 }
 
 export enum EventType {

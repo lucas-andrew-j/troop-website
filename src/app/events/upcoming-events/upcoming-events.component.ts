@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {EventType, EventSummary} from '../event.model';
+import {EventType, EventSummary, EventDetails} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
 import {DatePipe} from '@angular/common';
@@ -37,7 +37,7 @@ export class UpcomingEventsComponent {
   }
 
   openAddEventDialog() {
-    this.dialog.open(AddEventDialogComponent, {})
+    this.dialog.open<AddEventDialogComponent, any, EventSummary>(AddEventDialogComponent, {})
       .afterClosed()
       .subscribe((eventAdded) => {
         if (eventAdded) {

@@ -99,10 +99,11 @@ export class EventsService {
   }
 
   getUpcomingEventSummaries(): Observable<EventSummary[]> {
+    console.log('Upcoming Event Summaries');
     return of((JSON.parse(JSON.stringify(this.upcomingEventList)) as typeof this.upcomingEventList).sort((a, b) => a.startDate < b.startDate ? 0 : 1));
   }
 
-  postEvent(name: string, startDate: Date, type: EventType) {
+  postEvent(name: string, startDate: Date, type: EventType): EventSummary {
     let highestId = -1;
     this.upcomingEventList.forEach(event => {
       if (event.id > highestId) {
@@ -110,25 +111,24 @@ export class EventsService {
       }
     });
 
-    this.upcomingEventList.push({
+    const newEventSummary: EventSummary = {
       id: highestId + 1,
       name: name,
       startDate: startDate,
       type: type,
       meetingLocation: '',
       thumbnail: '',
-    });
+    };
+
+    this.upcomingEventList.push(newEventSummary);
 
     this.eventList.push({
-      id: highestId + 1,
-      name: name,
       description: '',
-      startDate: startDate,
       endDate: startDate,
       pictureId: 0,
-      type: type,
-      meetingLocation: '',
-      thumbnail: ''
+      ...newEventSummary
     })
+
+    return newEventSummary;
   }
 }
