@@ -1,6 +1,6 @@
-import {Component, computed, input, OnInit} from '@angular/core';
+import {Component, input} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {EventType} from '../event.model';
 import {MatIcon} from '@angular/material/icon';
 
@@ -24,4 +24,13 @@ export class EventCardComponent {
   eventType = input.required<EventType>();
   imageSource = input<string>();
   protected readonly EventType = EventType;
+
+  constructor(private router: Router) { }
+
+  route() {
+    const selection = window.getSelection();
+    if (!selection || selection.toString().length === 0) {
+      this.router.navigate(['/event', this.eventId()]);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<mat-card [routerLink]="['/event', eventId()]" class="event-card">
+<mat-card (click)="route()" class="event-card">
   <mat-card-header>
     <mat-card-title>{{eventTitle()}}</mat-card-title>
   </mat-card-header>
