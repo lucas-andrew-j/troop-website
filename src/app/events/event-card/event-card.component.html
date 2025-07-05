@@ -1,23 +1,29 @@
 <mat-card (click)="route()" class="event-card">
-  <mat-card-header>
-    <mat-card-title>{{eventTitle()}}</mat-card-title>
-  </mat-card-header>
   @if (imageSource() !== undefined) {
     <img mat-card-image [src]="imageSource()" alt="service" style="width: 20rem; height: 15rem; justify-content: center; display: flex; align-items: center;" />
   }
   @else if (eventType() === EventType.Meeting) {
-    <mat-icon>groups</mat-icon>
+    <mat-icon class="main">groups</mat-icon>
   }
   @else if (eventType() === EventType.Outing) {
-    <mat-icon>hiking</mat-icon>
+    <mat-icon class="main">hiking</mat-icon>
   }
   @else if (eventType() === EventType.Service) {
-    <mat-icon>volunteer_activism</mat-icon>
+    <mat-icon class="main">volunteer_activism</mat-icon>
   }
   @else {
-    <mat-icon>attach_money</mat-icon>
+    <mat-icon class="main">attach_money</mat-icon>
   }
+  <mat-card-header>
+    <mat-card-title>{{eventTitle()}}</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
     <ng-content />
   </mat-card-content>
+  <div style="margin-left:auto">
+    <button mat-mini-fab style="margin-left:auto" matTooltip="Edit event"><mat-icon>edit</mat-icon></button>
+    <button mat-mini-fab style="margin-left:auto" matTooltip="Move event"><mat-icon>arrow_forward</mat-icon></button>
+    <button mat-mini-fab style="margin-left:auto" matTooltip="Copy event"><mat-icon>content_copy</mat-icon></button>
+    <button mat-mini-fab style="margin-left:auto" matTooltip="Delete event"><mat-icon>delete</mat-icon></button>
+  </div>
 </mat-card>

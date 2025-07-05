@@ -10,9 +10,19 @@
 .event-card:hover{
   background-color: #a59675;
   cursor: pointer;
+
+  button {
+    visibility: visible;
+  }
 }
 
 mat-icon {
+  @include mat.icon-overrides((
+    color: #49402d,
+  ));
+}
+
+mat-icon.main {
   font-size: 15rem;
   height: 15rem;
   width: 20rem;
@@ -20,8 +30,10 @@ mat-icon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  @include mat.icon-overrides((
-    color: #49402d,
-  ));
+button {
+  background-color: transparent;
+  box-shadow: none;
+  visibility: hidden;
 }

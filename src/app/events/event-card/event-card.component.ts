@@ -1,8 +1,10 @@
 import {Component, input} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {EventType} from '../event.model';
 import {MatIcon} from '@angular/material/icon';
+import {MatMiniFabButton} from '@angular/material/button';
+import {MatTooltip} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-event-card',
@@ -10,10 +12,11 @@ import {MatIcon} from '@angular/material/icon';
     MatCard,
     MatCardHeader,
     MatCardContent,
-    RouterLink,
     MatCardImage,
     MatCardTitle,
     MatIcon,
+    MatMiniFabButton,
+    MatTooltip,
   ],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'
