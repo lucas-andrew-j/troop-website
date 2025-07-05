@@ -7,6 +7,11 @@
   flex: 0 0 auto;
 }
 
+.event-card:hover{
+  background-color: #a59675;
+  cursor: pointer;
+}
+
 mat-icon {
   font-size: 15rem;
   height: 15rem;
