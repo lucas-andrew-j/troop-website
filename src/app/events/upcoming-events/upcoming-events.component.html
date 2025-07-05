@@ -19,7 +19,7 @@
   <mat-button-toggle [value]="EventType.Fundraiser">Fundraiser</mat-button-toggle>
 </mat-button-toggle-group>
 
-@for (monthList of upcomingEventList; track $index) {
+@for (monthList of groupedEvents(); track $index) {
   <div>
     <h2>{{monthHeader(monthList[0].startDate)}}</h2>
     <mat-divider></mat-divider>

@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, computed, inject, Signal, signal, WritableSignal} from '@angular/core';
 import {EventType, EventSummary, EventDetails} from '../event.model';
 import {EventsService} from '../events.service';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,25 +25,28 @@ import {MatDivider} from '@angular/material/divider';
   styleUrl: './upcoming-events.component.scss'
 })
 export class UpcomingEventsComponent {
-  protected upcomingEventList: EventSummary[][] = [];
   private upcomingEventsService: EventsService = inject(EventsService);
   defaultSelections = [EventType.Meeting, EventType.Outing, EventType.Service, EventType.Fundraiser];
   private dialog = inject(MatDialog);
 
+  private eventListSignal: WritableSignal<EventSummary[]> = signal([]);
+  private sortedEvents: Signal<EventSummary[]> = computed(
+    () => this.eventListSignal().sort((a, b) => new Date(a.startDate) < new Date(b.startDate) ? 0 : 1)
+  );
+  protected groupedEvents: Signal<EventSummary[][]> = computed(() => this.buildMonthLists(this.sortedEvents()));
+
   constructor() {
     this.upcomingEventsService.getUpcomingEventSummaries().subscribe(eventList => {
-      this.upcomingEventList = this.buildMonthLists(eventList);
+      this.eventListSignal = signal(eventList);
     });
   }
 
   openAddEventDialog() {
     this.dialog.open<AddEventDialogComponent, any, EventSummary>(AddEventDialogComponent, {})
       .afterClosed()
-      .subscribe((eventAdded) => {
-        if (eventAdded) {
-          this.upcomingEventsService.getUpcomingEventSummaries().subscribe(eventList => {
-            this.upcomingEventList = this.buildMonthLists(eventList);
-          });
+      .subscribe((newEvent) => {
+        if (newEvent) {
+          this.eventListSignal.update(originalList => [...originalList, newEvent]);
         }
       });
   }
