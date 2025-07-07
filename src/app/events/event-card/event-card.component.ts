@@ -6,6 +6,8 @@ import {MatIcon} from '@angular/material/icon';
 import {MatMiniFabButton} from '@angular/material/button';
 import {MatTooltip} from '@angular/material/tooltip';
 import {EventsService} from '../events.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-event-card',
@@ -27,6 +29,9 @@ export class EventCardComponent {
   eventTitle = input.required<string>();
   eventType = input.required<EventType>();
   imageSource = input<string>();
+
+  private dialog = inject(MatDialog);
+
   eventDelete = output<number>();
 
   protected readonly EventType = EventType;
@@ -44,7 +49,14 @@ export class EventCardComponent {
 
   delete(id: number, event: Event) {
     event.stopPropagation();
-    this.eventsService.deleteEvent(id);
-    this.eventDelete.emit(id)
+
+    this.dialog.open<ConfirmationDialogComponent, any, boolean>(ConfirmationDialogComponent, {})
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.eventsService.deleteEvent(id);
+          this.eventDelete.emit(id);
+        }
+      });
   }
 }
