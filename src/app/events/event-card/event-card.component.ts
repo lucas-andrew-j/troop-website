@@ -1,4 +1,4 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from '@angular/material/card';
 import {Router} from '@angular/router';
 import {EventType} from '../event.model';
@@ -27,6 +27,8 @@ export class EventCardComponent {
   eventTitle = input.required<string>();
   eventType = input.required<EventType>();
   imageSource = input<string>();
+  eventDelete = output<number>();
+
   protected readonly EventType = EventType;
 
   private eventsService: EventsService = inject(EventsService);
@@ -42,6 +44,7 @@ export class EventCardComponent {
 
   delete(id: number, event: Event) {
     event.stopPropagation();
-    this.eventsService.deleteEvent(id)
+    this.eventsService.deleteEvent(id);
+    this.eventDelete.emit(id)
   }
 }
