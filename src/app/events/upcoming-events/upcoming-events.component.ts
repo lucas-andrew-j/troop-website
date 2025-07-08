@@ -37,7 +37,7 @@ export class UpcomingEventsComponent {
 
   constructor() {
     this.upcomingEventsService.getUpcomingEventSummaries().subscribe(eventList => {
-      this.eventListSignal = signal(eventList);
+      this.eventListSignal.set(eventList);
     });
   }
 

@@ -20,10 +20,15 @@
   <mat-card-content>
     <ng-content />
   </mat-card-content>
-  <div style="margin-left:auto">
-    <button mat-mini-fab style="margin-left:auto" matTooltip="Edit event"><mat-icon>edit</mat-icon></button>
-    <button mat-mini-fab style="margin-left:auto" matTooltip="Move event"><mat-icon>arrow_forward</mat-icon></button>
-    <button mat-mini-fab style="margin-left:auto" matTooltip="Copy event"><mat-icon>content_copy</mat-icon></button>
-    <button mat-mini-fab style="margin-left:auto" matTooltip="Delete event" (click)="delete(eventId(), $event)"><mat-icon>delete</mat-icon></button>
+  <div class="button-row">
+    <button mat-mini-fab matTooltip="Edit event"><mat-icon>edit</mat-icon></button>
+    <button mat-mini-fab matTooltip="Move event"><mat-icon>arrow_forward</mat-icon></button>
+    <button mat-mini-fab matTooltip="Copy event"><mat-icon>content_copy</mat-icon></button>
+    @if (isDeleting()) {
+      <mat-spinner diameter="30"></mat-spinner>
+    }
+    @else {
+      <button mat-mini-fab matTooltip="Delete event" (click)="delete(eventId(), $event)"><mat-icon>delete</mat-icon></button>
+    }
   </div>
 </mat-card>
