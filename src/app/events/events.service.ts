@@ -1,11 +1,15 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {EventType, EventDetails, EventSummary} from './event.model';
 import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
+  private httpClient = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
   constructor() { }
 
   protected upcomingEventList: EventSummary[] = [
@@ -99,7 +103,7 @@ export class EventsService {
   }
 
   getUpcomingEventSummaries(): Observable<EventSummary[]> {
-    return of((JSON.parse(JSON.stringify(this.upcomingEventList)) as typeof this.upcomingEventList).sort((a, b) => a.startDate < b.startDate ? 0 : 1));
+    return this.httpClient.get<EventSummary[]>(`${this.apiUrl}/upcoming-events`);
   }
 
   postEvent(name: string, startDate: Date, type: EventType): EventSummary {
