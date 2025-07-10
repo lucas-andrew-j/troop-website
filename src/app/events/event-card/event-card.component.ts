@@ -57,8 +57,15 @@ export class EventCardComponent {
       .subscribe(result => {
         if (result) {
           this.isDeleting.set(true);
-          this.eventsService.deleteEvent(id);
-          this.eventDelete.emit(id);
+          this.eventsService.deleteEvent(id).subscribe(
+            data => {
+              this.eventDelete.emit(id);
+            },
+            error => {
+              //todo display error
+            }
+          );
+
           this.isDeleting.set(false);
         }
       });

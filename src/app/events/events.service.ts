@@ -135,14 +135,7 @@ export class EventsService {
     return newEventSummary;
   }
 
-  deleteEvent(id: number): Observable<boolean> {
-    for (let i = 0; i < this.eventList.length; ++i) {
-      if (this.eventList[i].id === id) {
-        this.eventList.splice(i, 1);
-        return of(true);
-      }
-    }
-
-    return of(false);
+  deleteEvent(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/events/${id}`);
   }
 }
