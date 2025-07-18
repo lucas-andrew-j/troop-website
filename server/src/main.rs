@@ -3,8 +3,9 @@ use axum::{
     http::StatusCode,
     Json, Router,
 };
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize};
 use time::{PrimitiveDateTime};
+use diesel::{Queryable, Selectable};
 
 #[tokio::main]
 async fn main() {
@@ -44,12 +45,27 @@ struct CreateEvent {
     thumbnail: String
 }
 
-#[derive(Serialize)]
-struct Event {
-    id: u64,
-    name: String,
-    // start_date: PrimitiveDateTime,
-    event_type: String,
-    meeting_location: String,
-    thumbnail: String
+// #[derive(Serialize)]
+// struct Event {
+//     id: u64,
+//     name: String,
+//     // start_date: PrimitiveDateTime,
+//     event_type: String,
+//     meeting_location: String,
+//     thumbnail: String
+// }
+
+#[derive(Queryable, Selectable)]
+#[diesel(table_name = crate::posts)]
+#[diesel(check_for_backend(diesel::pg::Pg))]
+pub struct Event {
+    pub id: usize,
+    pub name: String,
+    pub description: String,
+    pub start_date: PrimitiveDateTime,
+    pub end_date: PrimitiveDateTime,
+    pub picture_id: usize,
+    pub event_type: String,
+    pub meeting_location: String,
+    pub thumbnail: String,
 }
