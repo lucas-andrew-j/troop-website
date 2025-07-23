@@ -1,3 +1,5 @@
+mod schema;
+
 use axum::{
     routing::{get},
     http::StatusCode,
