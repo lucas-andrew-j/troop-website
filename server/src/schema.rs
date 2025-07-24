@@ -2,14 +2,14 @@
 
 diesel::table! {
     events (id) {
-        id -> Int4,
         name -> Text,
-        description -> Text,
         start_date -> Date,
-        end_date -> Date,
-        picture_id -> Int4,
         event_type -> Text,
-        meeting_location -> Text,
-        thumbnail -> Text,
+        id -> Int4,
+        description -> Nullable<Text>,
+        end_date -> Nullable<Date>,
+        picture_id -> Nullable<Int4>,
+        meeting_location -> Nullable<Text>,
+        thumbnail -> Nullable<Text>,
     }
 }
