@@ -1,17 +1,21 @@
-mod schema;
-
+use std::env;
 use axum::{
     routing::{get},
     http::StatusCode,
     Json, Router,
 };
+use dotenvy::dotenv;
 use serde::{Deserialize};
+use sqlx::{PgPool, Error};
 use time::{PrimitiveDateTime};
-use diesel::{Queryable, Selectable};
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), Error> {
     tracing_subscriber::fmt::init();
+    dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let pool = PgPool::connect(&database_url).await?;
 
     let app = Router::new()
         .route("/", get(root))
@@ -19,6 +23,8 @@ async fn main() {
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
+
+    Ok(())
 }
 
 async fn root() -> &'static str {
@@ -29,7 +35,10 @@ async fn upcoming_events() -> (StatusCode, Json<Event>) {
     let event = Event {
         id: 0,
         name: "name".to_string(),
-        // start_date: payload.start_date,
+        description: "".to_string(),
+        start_date: PrimitiveDateTime::MIN,
+        end_date: PrimitiveDateTime::MAX,
+        picture_id: 0,
         event_type: "event type".to_string(),
         meeting_location: "payload".to_string(),
         thumbnail: "thumbnail".to_string(),
@@ -41,7 +50,7 @@ async fn upcoming_events() -> (StatusCode, Json<Event>) {
 #[derive(Deserialize)]
 struct CreateEvent {
     name: String,
-    // start_date: PrimitiveDateTime,
+    start_date: PrimitiveDateTime,
     event_type: String,
     meeting_location: String,
     thumbnail: String
@@ -57,9 +66,7 @@ struct CreateEvent {
 //     thumbnail: String
 // }
 
-#[derive(Queryable, Selectable)]
-#[diesel(table_name = crate::posts)]
-#[diesel(check_for_backend(diesel::pg::Pg))]
+#[derive(Deserialize)]
 pub struct Event {
     pub id: usize,
     pub name: String,
